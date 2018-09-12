@@ -13,7 +13,7 @@ A little obvious, don't you think?
 Developing apps on your actual device is fun and rewarding. So is using the [extended SDK](https://docs.expo.io/versions/v26.0.0/sdk/) they've been working on. Go check it out!
 
 #### [redux](https://redux.js.org/) + [react-redux](https://github.com/reduxjs/react-redux)
-Any app that becomes complex enough benefits from a more serious approach to managing data and state.
+Any app that becomes relatively complex benefits from a more deterministic and organized approach to managing data and state
 
 #### [redux-thunk](https://github.com/reduxjs/redux-thunk)
 `getState` is quite useful in actions when you have to pass along user tokens and other data you'd rather not repeat at every action invocation
