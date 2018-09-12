@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
-import { getPosts } from '../actions'
+import { getPosts, getPost } from '../actions'
 
 class Posts extends Component {
   static navigationOptions = {
@@ -12,16 +12,24 @@ class Posts extends Component {
     this.props.dispatchGetPosts()
   }
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {}
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.post) {
+      this.props.navigation.navigate('Post')
+    }
+  }
 
   _keyExtractor = (item, index) => String(item.id)
 
   _renderItem = ({ item }) => {
+    const postLoading = this.props.postLoading
+
     return (
-      <View style={{margin: 16}}>
-        <Text style={{fontWeight: 'bold'}}>{item.title}</Text>
-        <Text>{item.body}</Text>
-      </View>
+      <TouchableWithoutFeedback onPress={() => !postLoading && this.props.dispatchGetPost(item.id)}>
+        <View style={styles.card}>
+          <Text style={{fontWeight: 'bold'}}>{item.title}</Text>
+          <Text>{item.body}</Text>
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 
@@ -60,18 +68,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexGrow: 1,
-    flexDirection: 'row'
+    flexDirection: 'column'
+  },
+  card: {
+    backgroundColor: '#fff',
+    padding: 8,
+    margin: 12,
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#ddd',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   }
 })
 
 const mapStateToProps = state => {
-  const { posts, loading, error } = state.posts
+  const { posts, loading, error, post, postLoading } = state.posts
 
-  return { posts, loading, error }
+  return { posts, loading, error, post, postLoading }
 }
 
 const mapDispatchToProps = {
-  dispatchGetPosts: getPosts
+  dispatchGetPosts: getPosts,
+  dispatchGetPost: (id) => getPost(id)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)

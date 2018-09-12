@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import posts from './posts'
+import comments from './comments'
 // import { LOG_OUT } from '../actions/types'
 
 export default appReducer = combineReducers({
-  posts
+  posts,
+  comments
 })
 
 // const appReducer = combineReducers({
