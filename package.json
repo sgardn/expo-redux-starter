@@ -1,0 +1,29 @@
+{
+  "name": "expo-redux-starter",
+  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject",
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@expo/samples": "2.1.1",
+    "expo": "^28.0.0",
+    "react": "16.3.1",
+    "react-native": "github:expo/react-native#sdk-28.0.0",
+    "react-navigation": "^2.9.3",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "wretch": "^1.4.1"
+  },
+  "devDependencies": {
+    "jest-expo": "^27.0.0"
+  }
+}
