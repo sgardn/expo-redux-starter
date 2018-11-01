@@ -24,6 +24,7 @@
     "wretch": "^1.4.1"
   },
   "devDependencies": {
-    "jest-expo": "^27.0.0"
+    "jest-expo": "^27.0.0",
+    "expo-cli": "^2.1.3"
   }
 }
